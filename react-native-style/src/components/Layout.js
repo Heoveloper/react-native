@@ -13,6 +13,7 @@ const common = css`
     align-items: center;
 `;
 
+// const StyledHeader = styled.Text`
 const StyledHeader = styled.View`
     ${common}
 `;
@@ -26,7 +27,7 @@ const StyledFooter = styled.View`
 const Header = ({style}) => {
     return (
         <StyledHeader style={style}>
-            Header
+            <Text>Header</Text>
         </StyledHeader>
     )
 };
@@ -34,7 +35,7 @@ const Header = ({style}) => {
 const Contents = ({style}) => {
     return (
         <StyledContents style={style}>
-            Contents
+            <Text>Contents</Text>
         </StyledContents>
     )
 };
@@ -42,7 +43,7 @@ const Contents = ({style}) => {
 const Footer = ({style}) => {
     return (
         <StyledFooter style={style}>
-            Footer
+            <Text>Footer</Text>
         </StyledFooter>
     )
 };
