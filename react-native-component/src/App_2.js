@@ -1,15 +1,15 @@
 import React from 'react';
 import { StyleSheet, Text, View, TextInput } from 'react-native';
-import EventInput from './components/EventInput';
+import Counter from "./components/Counter";
 
 const App = () => {
 
     return (
         <View style={styles.container}>
-            <EventInput/>
+            <Counter/>
         </View>
-    );
-};
+    )
+}
 
 const styles = StyleSheet.create({
     container: {

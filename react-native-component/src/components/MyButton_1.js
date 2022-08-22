@@ -15,8 +15,20 @@ const MyButton = (props) => {
             borderRadius: 8,
         }}
 
+        activeOpacity={0.7}
         onPress={props.onPress}
+        // onPress={() => alert('onPress 클릭!')}
+        // onLongPress={() => alert('onLongPress 클릭!')}
+        // onPressIn={() => alert('onPressIn 클릭!')}
+        // onPressOut={() => alert('onPressOut 클릭!')}
+        // accessibilityRole={'checkbox'}
+        // accessible={false}
         >
+        {/* <Image
+            source={require('../../assets/icon/icon.png')}
+            style={{width: 80, height: 80}}
+        >
+        </Image> */}
             <Text style={{fontSize: props.fsize}}>
                 {props.title ?? props.children}
             </Text>
@@ -31,7 +43,7 @@ MyButton.defaultProps = {
     title: '임시'
 }
 MyButton.propTypes = {
-    demension: PropTypes.object,
+    demension: PropTypes.object.isRequired,
     title: PropTypes.string
 }
 
