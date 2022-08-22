@@ -1,12 +1,12 @@
 import React from 'react';
 import { StyleSheet, Text, View, TextInput } from 'react-native';
-import PressableBtn from './components/PressableBtn';
+import EventInput from './components/EventInput';
 
 const App = () => {
 
     return (
         <View style={styles.container}>
-            <PressableBtn title='Pressable'/>
+            <EventInput/>
         </View>
     );
 };
