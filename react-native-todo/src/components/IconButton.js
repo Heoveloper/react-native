@@ -22,6 +22,7 @@ const IconButton = ({type, onPressOut, id}) => {
     )
 };
 
+//핸들러가 넘어오지 않더라도 오류가 발생하지 않도록 디폴트 처리
 IconButton.defaultProps = {
     onPressOut: () => {},
 };

@@ -26,7 +26,10 @@ const Task = ({item, deleteTask}) => {
             <IconButton type={images.uncompleted}/>
             <Contents>{item.text}</Contents>
             <IconButton type={images.update}/>
-            <IconButton type={images.delete} id={item.id} onPressOut={deleteTask}/>
+            <IconButton type={images.delete}
+                        id={item.id}
+                        onPressOut={deleteTask}
+            />
         </Container>
     );
 };
