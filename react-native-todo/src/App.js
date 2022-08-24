@@ -52,7 +52,7 @@ export default function App() {
   //삭제
   const _deleteTask = id => {
     const currentTasks = Object.assign({}, tasks);
-    // const currentTasks = [...tasks];  //객체 복사
+    // const currentTasks = {...tasks};  //객체 복사
     delete currentTasks[id];
     setTasks(currentTasks);
   };
@@ -60,9 +60,17 @@ export default function App() {
   //완료
   const _toggleTask = id => {
     const currentTasks = Object.assign({}, tasks);
-    // const currentTasks = [...tasks];  //객체 복사
+    // const currentTasks = {...tasks};  //객체 복사
     currentTasks[id]['completed'] = !currentTasks[id]['completed'];
-    setTasks(currentTasks);
+    setTasks(currentTasks); //tasks = currentTasks;
+  };
+
+  //수정
+  const _updateTask = item => {
+    const currentTasks = Object.assign({}, tasks);
+    // const currentTasks = {...tasks};  //객체 복사
+    currentTasks[item.id] = item;       //수정 항목
+    setTasks(currentTasks); //tasks = currentTasks;
   };
 
   const _handleTextChange = (text) => {
@@ -94,6 +102,7 @@ export default function App() {
                         item={item}
                         deleteTask={_deleteTask}
                         toggleTask={_toggleTask}
+                        updateTask={_updateTask}
                   />
           ))}
         </List>
