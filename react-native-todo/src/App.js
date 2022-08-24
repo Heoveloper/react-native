@@ -1,8 +1,11 @@
 import React, { useState } from 'react';
 import styled, { ThemeProvider } from 'styled-components/native';
 import theme from './theme';
-import { StatusBar } from 'react-native';
-import Input from './Input';
+import { StatusBar, Dimensions } from 'react-native';
+import Input from './components/Input';
+import { images } from './images';
+import IconButton from './components/IconButton';
+import Task from './components/Task'
 
 const Container = styled.View`
   flex: 1;
@@ -20,23 +23,48 @@ const Title = styled.Text`
   margin: 0px 20px;
 `;
 
+const List = styled.ScrollView`
+  flex: 1;
+  width: ${({width}) => width - 40}px;
+`;
+
+const tmpData = {
+  '1': {id: '1', text: '자바', completed: false},
+  '2': {id: '2', text: '데이터베이스', completed: true},
+  '3': {id: '3', text: '스프링', completed: false},
+  '4': {id: '4', text: '리액트 네이티브', completed: false},
+}
+
 export default function App() {
   const [newTask, setNewTask] = useState('');
+  const [tasks, setTasks] = useState({});
 
   const _addTask = () => {
-    alert(`Add: ${newTask}`);
+    const ID = Date.now().toString();
+    const newTaskObject = {
+      [ID]: { id: ID, text: newTask, completed: false },
+    };
     setNewTask('');
+    setTasks({ ...tasks, ...newTaskObject }); //객체 병합 by 스프레드 문법
+  };
+
+  const _deleteTask = id => {
+    const currentTasks = Object.assign({}, tasks);
+    delete currentTasks[id];
+    setTasks(currentTasks);
   };
 
   const _handleTextChange = (text) => {
     setNewTask(text);
   }
 
+  const width = Dimensions.get('window').width;
+
   return (
     <ThemeProvider theme={theme}>
       <Container>
         <StatusBar
-          barStyle="dark-content"
+          barStyle="light-content"
           backgroundColor={theme.background}
         />
         <Title>TODO LIST</Title>
@@ -46,6 +74,17 @@ export default function App() {
           onChangeText={_handleTextChange}
           onSubmitEditing={_addTask}
         />
+        <List width={width}>
+          {Object.values(tasks)
+                 .reverse()
+                 .map(item => (
+                  <Task key={item.id}
+                        text={item.text}
+                        item={item}
+                        deleteTask={_deleteTask}
+                  />
+          ))}
+        </List>
       </Container>
     </ThemeProvider>
   );
