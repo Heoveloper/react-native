@@ -26,6 +26,7 @@ const Task = ({item, deleteTask, toggleTask, updateTask}) => {
     const [isEditing, setIsEditing] = useState(false);
     const [text, setText] = useState(item.text);
 
+    //수정버튼 클릭시
     const _hadndleUpdateButtonPress = () => {
         setIsEditing(true);
     };
@@ -40,27 +41,44 @@ const Task = ({item, deleteTask, toggleTask, updateTask}) => {
         }
     };
 
+    //수정시 입력필드에서 포커스가 떠났을 때
+    const _onBlur = () => {
+        if (isEditing) {
+            setIsEditing(false);
+            setText(item.text);
+        }
+    };
+
     return isEditing ? (
         <Input
             value={text}
             onChangeText={text => setText(text)}    //입력필드가 수정될 때마다
             onSubmitEditing={_onSubmitEditing}      //입력 완료시
+            onBlur={_onBlur}
         />
     ) : (
         <Container>
+            {/* 완료버튼 */}
             <IconButton
                 type={item.completed ? images.completed : images.uncompleted}
                 id={item.id}
                 onPressOut={toggleTask}
                 completed={item.completed}
             />
+
+            {/* 할 일 */}
             <Contents completed={item.completed}>{item.text}</Contents>
+
+            {/* 수정버튼 */}
+            {/* 완료시 수정버튼 */}
             {item.completed || (
                 <IconButton
                     type={images.update}
                     onPressOut={_hadndleUpdateButtonPress}
                 />
             )}
+
+            {/* 삭제버튼 */}
             <IconButton type={images.delete}
                         id={item.id}
                         onPressOut={deleteTask}

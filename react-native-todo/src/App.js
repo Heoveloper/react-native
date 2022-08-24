@@ -77,6 +77,11 @@ export default function App() {
     setNewTask(text);
   }
 
+  //입력필드에서 포커스가 떠났을 때
+  const _onBlur = () => {
+    setNewTask('');
+  }
+
   const width = Dimensions.get('window').width;
 
   return (
@@ -92,6 +97,7 @@ export default function App() {
           value={newTask}
           onChangeText={_handleTextChange}
           onSubmitEditing={_addTask}
+          onBlur={_onBlur}
         />
         <List width={width}>
           {Object.values(tasks)
