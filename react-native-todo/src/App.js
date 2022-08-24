@@ -39,6 +39,7 @@ export default function App() {
   const [newTask, setNewTask] = useState('');
   const [tasks, setTasks] = useState({});
 
+  //추가
   const _addTask = () => {
     const ID = Date.now().toString();
     const newTaskObject = {
@@ -48,9 +49,19 @@ export default function App() {
     setTasks({ ...tasks, ...newTaskObject }); //객체 병합 by 스프레드 문법
   };
 
+  //삭제
   const _deleteTask = id => {
     const currentTasks = Object.assign({}, tasks);
+    // const currentTasks = [...tasks];  //객체 복사
     delete currentTasks[id];
+    setTasks(currentTasks);
+  };
+
+  //완료
+  const _toggleTask = id => {
+    const currentTasks = Object.assign({}, tasks);
+    // const currentTasks = [...tasks];  //객체 복사
+    currentTasks[id]['completed'] = !currentTasks[id]['completed'];
     setTasks(currentTasks);
   };
 
@@ -82,6 +93,7 @@ export default function App() {
                         text={item.text}
                         item={item}
                         deleteTask={_deleteTask}
+                        toggleTask={_toggleTask}
                   />
           ))}
         </List>
