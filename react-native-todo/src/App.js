@@ -96,7 +96,7 @@ export default function App() {
   const _handleTextChange = (text) => {
     setNewTask(text);
   }
-  
+
   //삭제
   const _deleteTask = id => {
     const currentTasks = Object.assign({}, tasks);
